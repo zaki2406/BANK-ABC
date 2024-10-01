@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Report</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Upload Report</h1>
+    <form id="upload-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+
+    <div id="response" style="margin-top: 20px;"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#upload-form').on('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                $.ajax({
+                    url: '{% url "/financial-data/" %}',  // Update with your URL name
+                    type: 'POST',
+                    data: new FormData(this),
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                        // Handle success response
+                        let responseHtml = '<h2>Response</h2><ul>';
+                        data.forEach(message => {
+                            responseHtml += `<li><strong>${message.role}:</strong> ${message.content}</li>`;
+                        });
+                        responseHtml += '</ul>';
+                        $('#response').html(responseHtml);
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error response
+                        $('#response').html('<p>An error occurred while processing your file.</p>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
