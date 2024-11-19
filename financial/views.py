@@ -796,8 +796,8 @@ class FinancialDataView(APIView):
         },
         {
             "mismatch": {
-                "value": current_assets_2022.get('mismatch', {}).get('value', 0),
-                "year": current_assets_2022.get('mismatch', {}).get('year', '2022'),
+                "value": current_assets_2022.get('mismatch', {}).get('year', '2022'),
+                "year": current_assets_2022.get('mismatch', {}).get('value', 0),
                 "precision": 'null'
             }
         },
@@ -1053,8 +1053,8 @@ class FinancialDataView(APIView):
     },
     {
       "mismatch": {
-        "value": current_liabilities_2022.get('mismatch', {}).get('value', 0),
-        "year": current_liabilities_2022.get('mismatch', {}).get('year', '2022'),
+        "value": current_liabilities_2022.get('mismatch', {}).get('value', 2022),
+        "year": current_liabilities_2022.get('mismatch', {}).get('year', 0),
         "precision": 'null'
       }
     },
@@ -1324,6 +1324,3 @@ class FinancialDataView(APIView):
 
                     return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-
