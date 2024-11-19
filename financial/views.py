@@ -796,8 +796,8 @@ class FinancialDataView(APIView):
         },
         {
             "mismatch": {
-                "value": current_assets_2022.get('mismatch', {}).get('year', '2022'),
-                "year": current_assets_2022.get('mismatch', {}).get('value', 0),
+                "value": current_assets_2022.get('mismatch', {}).get('value', 0),
+                "year": current_assets_2022.get('mismatch', {}).get('year', '2022'),
                 "precision": 'null'
             }
         },
@@ -1053,8 +1053,8 @@ class FinancialDataView(APIView):
     },
     {
       "mismatch": {
-        "value": current_liabilities_2022.get('mismatch', {}).get('value', 2022),
-        "year": current_liabilities_2022.get('mismatch', {}).get('year', 0),
+        "value": current_liabilities_2022.get('mismatch', {}).get('value', 0),
+        "year": current_liabilities_2022.get('mismatch', {}).get('year', '2022'),
         "precision": 'null'
       }
     },
